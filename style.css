@@ -225,6 +225,43 @@ body {
   height: 1rem;
 }
 
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin-left: 10px;
+  cursor: pointer;
+}
+button a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.sign-in-btna{
+  background-color: #4caf50;
+  color: white;
+}
+.sign-in-btn a:hover {
+  background-color: #45a049;
+}
+.log-in-btn a {
+  background-color: #008CBA; 
+  color: white;
+}
+
+.log-in-btn a:hover {
+  background-color: #007bb5; 
+}
+
+
+.notification-btn, .add-task-btn {
+  margin-left: 10px;
+}
+
 /* Stats grid */
 .stats-grid {
   display: grid;
