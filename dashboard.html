@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Tracking Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <h1>Dashboard</h1>
+            <div class="date-nav">
+                <button class="nav-btn">←</button>
+                <span class="current-week">This week</span>
+                <button class="nav-btn">→</button>
+            </div>
+        </header>
+
+        <div class="stats-summary">
+            <div class="stat-card">
+                <h3>Total time</h3>
+                <div class="stat-value">36:00</div>
+            </div>
+            <div class="stat-card">
+                <h3>Top project</h3>
+                <div class="stat-value">Project X</div>
+            </div>
+            <div class="stat-card">
+                <h3>Amount</h3>
+                <div class="stat-value">$1,000</div>
+            </div>
+        </div>
+
+        <div class="time-chart">
+            <canvas id="weekChart"></canvas>
+        </div>
+
+        <div class="project-distribution">
+            <div class="donut-chart">
+                <canvas id="distributionChart"></canvas>
+            </div>
+            <div class="project-stats">
+                <div class="project-row">
+                    <span class="project-name">Project X</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 50%; background: #FF69B4;"></div>
+                    </div>
+                    <span class="project-hours">20:00</span>
+                </div>
+                <div class="project-row">
+                    <span class="project-name">Office</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%; background: #FFD700;"></div>
+                    </div>
+                    <span class="project-hours">10:00</span>
+                </div>
+                <div class="project-row">
+                    <span class="project-name">ACME</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 10%; background: #00BFFF;"></div>
+                    </div>
+                    <span class="project-hours">4:00</span>
+                </div>
+                <div class="project-row">
+                    <span class="project-name">Time-off</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 5%; background: #696969;"></div>
+                    </div>
+                    <span class="project-hours">2:00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-activity">
+            <h2>Team Activity</h2>
+            <div class="team-list">
+                <div class="team-member">
+                    <div class="member-info">
+                        <img src="https://ui-avatars.com/api/?name=Annie" alt="Annie" class="avatar">
+                        <div class="member-details">
+                            <h3>Annie</h3>
+                            <p>Break • Time-off</p>
+                        </div>
+                    </div>
+                    <div class="time-info">
+                        <span class="duration">13:00</span>
+                        <div class="time-bar">
+                            <div class="time-segment" style="width: 65%; background: #FF69B4;"></div>
+                            <div class="time-segment" style="width: 35%; background: #696969;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- More team members... -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
