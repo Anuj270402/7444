@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Checklist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #ffffff;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #2cb4c9;
+            color: white;
+        }
+
+        .high {
+            background-color: #ff9999;
+        }
+
+        .medium {
+            background-color: #ffec99;
+        }
+
+        .low {
+            background-color: #c6f9c6;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            line-height: 20px;
+        }
+
+        .controls {
+            margin: 20px 0;
+        }
+
+        .controls input, .controls button {
+            padding: 10px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Checklist</h1>
+
+    <div class="controls">
+        <input type="text" id="newTask" placeholder="Enter new task">
+        <select id="newPriority">
+            <option value="high">HIGH</option>
+            <option value="medium">MEDIUM</option>
+            <option value="low">LOW</option>
+        </select>
+        <input type="date" id="newDueDate">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Done</th>
+                <th>Task</th>
+                <th>Priority</th>
+                <th>Due Date</th>
+                <th>% Complete</th>
+                <th>Notes</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="taskTable">
+            <tr>
+                <td><input type="checkbox" onchange="updateTask(this, 50)"></td>
+                <td contenteditable="true">Task 1</td>
+                <td class="high" contenteditable="true">HIGH</td>
+                <td contenteditable="true">2019/12/13</td>
+                <td><div class="progress-bar" style="width: 50%;">50%</div></td>
+                <td contenteditable="true"></td>
+                <td><button onclick="deleteTask(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" onchange="updateTask(this, 80)"></td>
+                <td contenteditable="true">Task 2</td>
+                <td class="high" contenteditable="true">HIGH</td>
+                <td contenteditable="true">2019/12/20</td>
+                <td><div class="progress-bar" style="width: 80%;">80%</div></td>
+                <td contenteditable="true"></td>
+                <td><button onclick="deleteTask(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" onchange="updateTask(this, 30)"></td>
+                <td contenteditable="true">Task 3</td>
+                <td class="medium" contenteditable="true">MEDIUM</td>
+                <td contenteditable="true">2019/12/26</td>
+                <td><div class="progress-bar" style="width: 30%;">30%</div></td>
+                <td contenteditable="true"></td>
+                <td><button onclick="deleteTask(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" onchange="updateTask(this, 50)"></td>
+                <td contenteditable="true">Task 4</td>
+                <td class="low" contenteditable="true">LOW</td>
+                <td contenteditable="true">2019/12/30</td>
+                <td><div class="progress-bar" style="width: 50%;">50%</div></td>
+                <td contenteditable="true"></td>
+                <td><button onclick="deleteTask(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" onchange="updateTask(this, 0)"></td>
+                <td contenteditable="true">Task 5</td>
+                <td class="low" contenteditable="true">LOW</td>
+                <td contenteditable="true">2019/12/30</td>
+                <td><div class="progress-bar" style="width: 0%;">0%</div></td>
+                <td contenteditable="true"></td>
+                <td><button onclick="deleteTask(this)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function updateTask(checkbox, progress) {
+            const row = checkbox.parentElement.parentElement;
+            const progressBar = row.querySelector('.progress-bar');
+
+            if (checkbox.checked) {
+                progressBar.style.width = '100%';
+                progressBar.textContent = '100%';
+            } else {
+                progressBar.style.width = progress + '%';
+                progressBar.textContent = progress + '%';
+            }
+        }
+
+        function addTask() {
+            const taskTable = document.getElementById('taskTable');
+            const newTask = document.getElementById('newTask').value;
+            const newPriority = document.getElementById('newPriority').value.toUpperCase();
+            const newDueDate = document.getElementById('newDueDate').value;
+
+            if (!newTask || !newDueDate) {
+                alert('Please fill out both the task and due date fields.');
+                return;
+            }
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="checkbox" onchange="updateTask(this, 0)"></td>
+                <td contenteditable="true">${newTask}</td>
+                <td class="${newPriority.toLowerCase()}" contenteditable="true">${newPriority}</td>
+                <td contenteditable="true">${newDueDate}</td>
+                <td><div class="progress-bar" style="width: 0%;">0%</div></td>
+                <td contenteditable="true"></td>
+                <td><button onclick="deleteTask(this)">Delete</button></td>
+            `;
+
+            taskTable.appendChild(row);
+
+            document.getElementById('newTask').value = '';
+            document.getElementById('newPriority').value = 'high';
+            document.getElementById('newDueDate').value = '';
+        }
+
+        function deleteTask(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
+</body>
+</html>

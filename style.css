@@ -426,3 +426,101 @@ body {
   width: 1rem;
   height: 1rem;
 }
+
+@media screen and (max-width: 1024px) {
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar-nav {
+    display: none;
+  }
+
+  .header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .task-list {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .task-card {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar-header h1 {
+    font-size: 1.125rem;
+  }
+
+  .nav-item {
+    padding: 0.75rem 1rem;
+  }
+
+  .header-title h1 {
+    font-size: 1.25rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .task-card {
+    padding: 1rem;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .productivity-chart {
+    height: 14rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 0.75rem;
+  }
+
+  .header {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .header-title h1 {
+    font-size: 1rem;
+  }
+
+  .task-card {
+    padding: 0.75rem;
+  }
+
+  .productivity-chart {
+    height: 12rem;
+  }
+}
